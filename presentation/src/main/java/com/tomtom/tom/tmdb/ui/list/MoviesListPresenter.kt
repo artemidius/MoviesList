@@ -25,6 +25,7 @@ class MoviesListPresenter(private val listFragment: MoviesListFragment) : BasePr
     companion object {
         var currentPage: Int = 0
         var moviesList = mutableListOf<Movie>()
+        var sortedList = mutableListOf<Movie>()
         var downloadRetryCount = 0
     }
 

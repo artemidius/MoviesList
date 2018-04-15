@@ -10,5 +10,6 @@ class Movie (
         val poster_path:String,
         val overview:String,
         val id:Int,
-        val vote_average:Double
+        val vote_average:Double,
+        val release_date:String
 )

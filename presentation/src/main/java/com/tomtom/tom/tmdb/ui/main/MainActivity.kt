@@ -7,14 +7,12 @@ import android.util.Log
 import android.view.View
 import com.tomtom.tom.domain.model.Movie
 import com.tomtom.tom.tmdb.R
-import com.tomtom.tom.tmdb.base.ActivityLifeCyclePresenter
 import com.tomtom.tom.tmdb.base.BaseActivity
 import com.tomtom.tom.tmdb.base.BaseFragment
 import com.tomtom.tom.tmdb.base.Dispatcher
 import com.tomtom.tom.tmdb.base.Dispatcher.Companion.DETAILS_FRAGMENT
 import com.tomtom.tom.tmdb.base.Dispatcher.Companion.LIST_FRAGMENT
 import com.tomtom.tom.tmdb.ui.detail.DetailFragment
-import com.tomtom.tom.tmdb.ui.detail.MovieDetailsContract
 import com.tomtom.tom.tmdb.ui.list.MoviesListContract
 import com.tomtom.tom.tmdb.ui.list.MoviesListFragment
 import kotlinx.android.synthetic.main.activity_main.*
