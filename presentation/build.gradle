@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.tomtom.tom.tmdb"
+        minSdkVersion 17
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+
+    def testDependencies = rootProject.ext.testDependencies
+    def googleDependencies = rootProject.ext.googleDependencies
+    def thirdPartyDependencies = rootProject.ext.thirdPartyDependencies
+
+    //kotlin
+    implementation googleDependencies.kotlin
+
+    //tests
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.espresso
+    androidTestImplementation testDependencies.espresso_contrib
+    androidTestImplementation testDependencies.runner
+    androidTestImplementation testDependencies.annotations
+    androidTestImplementation testDependencies.rules
+    androidTestImplementation testDependencies.mockito
+    testImplementation testDependencies.roboelectric
+
+    //google
+    implementation googleDependencies.appcompat
+    implementation googleDependencies.recyclerview
+    implementation googleDependencies.constraint
+    implementation googleDependencies.support
+    implementation googleDependencies.design
+    implementation googleDependencies.firebase_core
+
+    //dagger 2
+    implementation thirdPartyDependencies.dagger
+    implementation thirdPartyDependencies.dagger_android
+    implementation thirdPartyDependencies.dagger_support
+    kapt thirdPartyDependencies.anno_proc
+    kapt thirdPartyDependencies.anno_proc_android
+
+    //third-party
+    implementation thirdPartyDependencies.picasso
+    implementation thirdPartyDependencies.sentry
+
+
+    api project(':data')
+}
+repositories {
+    mavenCentral()
+}
+apply plugin: 'com.google.gms.google-services'

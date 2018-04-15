@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "336857152895",
+    "firebase_url": "https://movieslistcareem.firebaseio.com",
+    "project_id": "movieslistcareem",
+    "storage_bucket": "movieslistcareem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336857152895:android:97103dc003848394",
+        "android_client_info": {
+          "package_name": "com.tomtom.tom.tmdb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336857152895-lmklfmnk9l18tangptqg953d9qgql457.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMkBzhRqjKpeUbdAy7EWJcg5uw67d0mFM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

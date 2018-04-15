@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TvShowsList</string>
+    <string name="list_screen_title">TV Shows: Popular</string>
+    <string name="connection_failed">Connection failed</string>
+    <string name="retry">RETRY</string>
+    <string name="loading">Loading…</string>
+    <string name="sentry_key">https://19a44fda678e4faf816d3e936d4a6c93:3bfbd16ba6bc45dc9ec04fda713c437c@sentry.io/1189244</string>
+</resources>
