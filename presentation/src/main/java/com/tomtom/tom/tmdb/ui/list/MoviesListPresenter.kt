@@ -30,12 +30,10 @@ class MoviesListPresenter(private val listFragment: MoviesListFragment) : BasePr
         var currentPage: Int = 0
         var moviesList = mutableListOf<Movie>()
         var sortedList = listOf<Movie>()
-        var downloadRetryCount = 0
         var sortedByDate = false
     }
 
     override fun onMoviesPageDownloaded(response: MoviesResponse) {
-        downloadRetryCount = 0
         currentPage = response.page
         moviesList.addAll(response.results)
         sortMoviesByDateDescUseCase.run(moviesList, this)
@@ -74,19 +72,32 @@ class MoviesListPresenter(private val listFragment: MoviesListFragment) : BasePr
 
     override fun onViewCreated() {
         fragmentIsActive = true
-        listFragment.activity.title = context.getString(R.string.list_screen_title)
+        updateScreenTitle()
+        updateButtonText()
         if (moviesList.size < 20) downloadNextPage()
         else view?.onDataUpdate(moviesList)
+    }
+
+    fun updateScreenTitle() {
+        listFragment.activity.title = if(sortedByDate) context.getString(R.string.list_screen_title_sorted) else context.getString(R.string.list_screen_title_unsorted)
+    }
+
+    fun updateButtonText() {
+        view?.setSortingButtonState(sortedByDate)
     }
 
     override fun onSortButtonClick() {
         sortedByDate = !sortedByDate
         updateUI()
         view?.setSortingButtonState(sortedByDate)
+        updateScreenTitle()
     }
 
-    override fun onCreate()       {  Log.d(tag, "Fragment triggered onResume()")    }
-    override fun onResume()       {  Log.d(tag, "Fragment triggered onResume()")    }
+    override fun onCreate()       {  Log.d(tag, "Fragment triggered onCreate()")    }
+    override fun onResume()       {
+        Log.d(tag, "Fragment triggered onResume()")
+
+    }
     override fun onPause()        {  Log.d(tag, "Fragment triggered onPause()")     }
     override fun onDestroy()      {  Log.d(tag, "Fragment triggered onDestroy()")   }
     override fun onStop()         {  fragmentIsActive = false                            }

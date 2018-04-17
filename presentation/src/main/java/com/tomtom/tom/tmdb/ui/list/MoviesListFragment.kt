@@ -68,6 +68,16 @@ class MoviesListFragment : BaseFragment(), MoviesListContract.View {
         sort_button.text = if (active) resources.getString(R.string.show_unsorted) else resources.getString(R.string.sort_by_date)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        presenter.onCreate()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.onResume()
+    }
+
     override fun onStop() {
         super.onStop()
         presenter.onStop()

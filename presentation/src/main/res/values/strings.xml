@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TvShowsList</string>
-    <string name="list_screen_title">TV Shows: Popular</string>
+    <string name="list_screen_title_unsorted">Movies: Popular</string>
+    <string name="list_screen_title_sorted">Movies: Sorted by Date</string>
     <string name="connection_failed">Connection failed</string>
     <string name="retry">RETRY</string>
     <string name="loading">Loading…</string>

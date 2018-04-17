@@ -24,8 +24,13 @@ class MovieDetailsPresenter(private val detailFragment: DetailFragment) : BasePr
         }
     }
 
+    fun updateScreenTitle() {
+        detailFragment.activity.title = currentMovie.title
+    }
+
     override fun onViewCreated() {
         fragmentIsActive = true
+        updateScreenTitle()
         updateUI(currentMovie)
     }
 
