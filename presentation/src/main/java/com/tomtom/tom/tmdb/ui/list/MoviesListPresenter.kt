@@ -4,9 +4,11 @@ import android.util.Log
 import com.tomtom.tom.data.backend.BackendRepository
 import com.tomtom.tom.domain.boundaries.DownloadMoviesUseCase
 import com.tomtom.tom.domain.boundaries.Interactor
+import com.tomtom.tom.domain.boundaries.SortMoviesByDateDescUseCase
 import com.tomtom.tom.domain.model.Movie
 import com.tomtom.tom.domain.model.MoviesResponse
 import com.tomtom.tom.domain.usecases.DownloadMoviesUseCaseImpl
+import com.tomtom.tom.domain.usecases.SortMoviesByDateDescUseCaseImpl
 import com.tomtom.tom.tmdb.R
 import com.tomtom.tom.tmdb.application.MoviesListApplication.Companion.apiKey
 import com.tomtom.tom.tmdb.base.BasePresenter
@@ -15,9 +17,11 @@ import com.tomtom.tom.tmdb.base.Dispatcher
 
 class MoviesListPresenter(private val listFragment: MoviesListFragment) : BasePresenter(), MoviesListContract.Presenter, Interactor.Presentation {
 
+
     private val tag = this.javaClass.simpleName
     private val view: MoviesListContract.View? = listFragment
     private val downloadMoviesUseCase: DownloadMoviesUseCase = DownloadMoviesUseCaseImpl()
+    private val sortMoviesByDateDescUseCase: SortMoviesByDateDescUseCase = SortMoviesByDateDescUseCaseImpl()
     private val backendInteractor: Interactor.Backend = BackendRepository()
     private val presenter = this
     private var fragmentIsActive = false
@@ -25,14 +29,20 @@ class MoviesListPresenter(private val listFragment: MoviesListFragment) : BasePr
     companion object {
         var currentPage: Int = 0
         var moviesList = mutableListOf<Movie>()
-        var sortedList = mutableListOf<Movie>()
+        var sortedList = listOf<Movie>()
         var downloadRetryCount = 0
+        var sortedByDate = false
     }
 
     override fun onMoviesPageDownloaded(response: MoviesResponse) {
         downloadRetryCount = 0
         currentPage = response.page
         moviesList.addAll(response.results)
+        sortMoviesByDateDescUseCase.run(moviesList, this)
+    }
+
+    override fun onMoviesListSorted(list: List<Movie>) {
+        sortedList = list
         updateUI()
     }
 
@@ -40,7 +50,8 @@ class MoviesListPresenter(private val listFragment: MoviesListFragment) : BasePr
         if (fragmentIsActive) {
             listFragment.activity.runOnUiThread {
                 listFragment.dispatcher.showLoadigProgress(false)
-                view?.onDataUpdate(moviesList)
+                if(sortedByDate) view?.onDataUpdate(sortedList)
+                else view?.onDataUpdate(moviesList)
             }
         }
     }
@@ -66,6 +77,12 @@ class MoviesListPresenter(private val listFragment: MoviesListFragment) : BasePr
         listFragment.activity.title = context.getString(R.string.list_screen_title)
         if (moviesList.size < 20) downloadNextPage()
         else view?.onDataUpdate(moviesList)
+    }
+
+    override fun onSortButtonClick() {
+        sortedByDate = !sortedByDate
+        updateUI()
+        view?.setSortingButtonState(sortedByDate)
     }
 
     override fun onCreate()       {  Log.d(tag, "Fragment triggered onResume()")    }

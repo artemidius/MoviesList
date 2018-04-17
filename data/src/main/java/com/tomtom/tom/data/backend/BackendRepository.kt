@@ -12,7 +12,7 @@ class BackendRepository:Interactor.Backend {
 
     override fun downloadMovies(api_key: String, page: String): Single<MoviesResponse> =
         RetrofitHelper()
-                .getUpcomingMovies(api_key, page)
+                .getPopularMovies(api_key, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 

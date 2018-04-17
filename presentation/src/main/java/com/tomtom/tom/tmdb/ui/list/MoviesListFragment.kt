@@ -12,6 +12,7 @@ import com.tomtom.tom.tmdb.R
 import com.tomtom.tom.tmdb.adapters.CustomGridLayoutManager
 import com.tomtom.tom.tmdb.adapters.MoviesListAdapter
 import com.tomtom.tom.tmdb.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_list_content.*
 
 class MoviesListFragment : BaseFragment(), MoviesListContract.View {
 
@@ -29,6 +30,10 @@ class MoviesListFragment : BaseFragment(), MoviesListContract.View {
         initRecycler(view!!)
 
         presenter.onViewCreated()
+
+        sort_button.setOnClickListener {
+            presenter.onSortButtonClick()
+        }
 
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
@@ -57,6 +62,10 @@ class MoviesListFragment : BaseFragment(), MoviesListContract.View {
         activity.runOnUiThread {
             adapter.updateList(movies)
         }
+    }
+
+    override fun setSortingButtonState(active: Boolean) {
+        sort_button.text = if (active) resources.getString(R.string.show_unsorted) else resources.getString(R.string.sort_by_date)
     }
 
     override fun onStop() {

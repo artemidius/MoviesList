@@ -8,6 +8,13 @@ import retrofit2.http.Query
 
 interface MoviesApi {
 
+    @GET("movie/popular")
+    fun getPopular(
+            @Query("api_key") api_key: String,
+            @Query("page") page: String,
+            @Query("language") language: String
+    ): Single<MoviesResponse>
+
     @GET("movie/upcoming")
     fun getUpcoming(
             @Query("api_key") api_key: String,

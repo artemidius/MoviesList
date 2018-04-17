@@ -20,4 +20,5 @@ class RetrofitHelper {
     }
 
     fun getUpcomingMovies(api_key: String, page: String): Single<MoviesResponse> = moviesApi.getUpcoming(api_key, page, "en-US")
+    fun getPopularMovies(api_key: String, page: String): Single<MoviesResponse> = moviesApi.getPopular(api_key, page, "en-US")
 }

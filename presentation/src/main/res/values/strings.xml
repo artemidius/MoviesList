@@ -5,4 +5,6 @@
     <string name="retry">RETRY</string>
     <string name="loading">Loading…</string>
     <string name="sentry_key">https://19a44fda678e4faf816d3e936d4a6c93:3bfbd16ba6bc45dc9ec04fda713c437c@sentry.io/1189244</string>
+    <string name="sort_by_date">sort by date</string>
+    <string name="show_unsorted">show unsorted</string>
 </resources>
