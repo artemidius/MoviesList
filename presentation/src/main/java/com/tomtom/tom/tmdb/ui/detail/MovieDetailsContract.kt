@@ -13,6 +13,7 @@ interface MovieDetailsContract {
     interface Presenter : ActivityLifeCyclePresenter {
         fun onViewCreated()
         fun initializeDataset(movie: Movie)
+        fun setFragment(fragment: MovieDetailFragment)
     }
 
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TvShowsList</string>
+    <string name="app_name">MoviesList</string>
     <string name="list_screen_title_unsorted">Movies: Popular</string>
     <string name="list_screen_title_sorted">Movies: Sorted by Date</string>
     <string name="connection_failed">Connection failed</string>

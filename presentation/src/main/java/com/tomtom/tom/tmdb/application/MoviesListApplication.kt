@@ -2,9 +2,10 @@ package com.tomtom.tom.tmdb.application
 
 import android.app.Application
 import com.tomtom.tom.tmdb.R
-import com.tomtom.tom.tmdb.dagger.AppComponent
-import com.tomtom.tom.tmdb.dagger.AppModule
-import com.tomtom.tom.tmdb.dagger.DaggerAppComponent
+import com.tomtom.tom.tmdb.dagger.*
+import com.tomtom.tom.tmdb.ui.detail.MovieDetailsPresenter
+import com.tomtom.tom.tmdb.ui.list.MoviesListPresenter
+import com.tomtom.tom.tvshowslist.dagger.PresenterModule
 import io.sentry.Sentry
 import io.sentry.android.AndroidSentryClientFactory
 
@@ -13,6 +14,7 @@ class MoviesListApplication : Application() {
 
     companion object {
         lateinit var appComponent: AppComponent
+        lateinit var presenterComponent: PresenterComponent
         lateinit var apiKey: String
         lateinit var baseUrl: String
     }
@@ -35,6 +37,10 @@ class MoviesListApplication : Application() {
 
         appComponent = DaggerAppComponent.builder()
                 .appModule(AppModule(this))
+                .build()
+
+        presenterComponent = DaggerPresenterComponent.builder()
+                .presenterModule(PresenterModule(MoviesListPresenter(), MovieDetailsPresenter()))
                 .build()
     }
 }

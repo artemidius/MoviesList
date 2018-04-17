@@ -15,6 +15,7 @@ interface MoviesListContract {
         fun onItemClick(movie: Movie?)
         fun onSortButtonClick()
         fun downloadNextPage()
+        fun setFragment(fragment: MoviesListFragment)
 
     }
 

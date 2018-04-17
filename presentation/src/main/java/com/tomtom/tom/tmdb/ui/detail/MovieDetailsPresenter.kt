@@ -5,27 +5,33 @@ import com.tomtom.tom.domain.model.Movie
 import com.tomtom.tom.tmdb.base.BasePresenter
 
 
-class MovieDetailsPresenter(private val detailFragment: DetailFragment) : BasePresenter(), MovieDetailsContract.Presenter {
+class MovieDetailsPresenter() : BasePresenter(), MovieDetailsContract.Presenter {
 
     private val tag = this.javaClass.simpleName
-    private val view: MovieDetailsContract.View? = detailFragment
+    lateinit var view: MovieDetailsContract.View
     lateinit var currentMovie: Movie
     private var fragmentIsActive = false
+    lateinit var movieDetailFragment:MovieDetailFragment
 
     override fun initializeDataset(movie: Movie) {
         currentMovie = movie
     }
 
+    override fun setFragment(fragment: MovieDetailFragment) {
+        movieDetailFragment = fragment
+        view = movieDetailFragment
+    }
+
     private fun updateUI(movie: Movie) {
         if (fragmentIsActive) {
-            detailFragment.activity.runOnUiThread {
-                view?.onDataUpdate(movie)
+            movieDetailFragment.activity.runOnUiThread {
+                view.onDataUpdate(movie)
             }
         }
     }
 
     fun updateScreenTitle() {
-        detailFragment.activity.title = currentMovie.title
+        movieDetailFragment.activity.title = currentMovie.title
     }
 
     override fun onViewCreated() {

@@ -11,17 +11,30 @@ import com.tomtom.tom.domain.model.Movie
 import com.tomtom.tom.tmdb.R
 import com.tomtom.tom.tmdb.adapters.CustomGridLayoutManager
 import com.tomtom.tom.tmdb.adapters.MoviesListAdapter
+import com.tomtom.tom.tmdb.application.MoviesListApplication
 import com.tomtom.tom.tmdb.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_list_content.*
+import javax.inject.Inject
 
 class MoviesListFragment : BaseFragment(), MoviesListContract.View {
+
+    @Inject
+    lateinit var moviesListPresenter: MoviesListPresenter
 
     var isLoading = false
 
     private lateinit var recyclerView: RecyclerView
     lateinit var adapter: MoviesListAdapter
     private lateinit var layoutManager: GridLayoutManager
-    private val presenter: MoviesListContract.Presenter = MoviesListPresenter(this)
+    lateinit var presenter: MoviesListContract.Presenter
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        MoviesListApplication.presenterComponent.inject(this)
+        presenter = moviesListPresenter
+        presenter.setFragment(this)
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? = inflater!!.inflate(R.layout.fragment_list, container, false)
 
@@ -68,15 +81,6 @@ class MoviesListFragment : BaseFragment(), MoviesListContract.View {
         sort_button.text = if (active) resources.getString(R.string.show_unsorted) else resources.getString(R.string.sort_by_date)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        presenter.onCreate()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        presenter.onResume()
-    }
 
     override fun onStop() {
         super.onStop()

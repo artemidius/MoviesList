@@ -1,5 +1,6 @@
 package com.tomtom.tom.tmdb.ui.list
 
+import android.app.ListFragment
 import android.util.Log
 import com.tomtom.tom.data.backend.BackendRepository
 import com.tomtom.tom.domain.boundaries.DownloadMoviesUseCase
@@ -15,11 +16,12 @@ import com.tomtom.tom.tmdb.base.BasePresenter
 import com.tomtom.tom.tmdb.base.Dispatcher
 
 
-class MoviesListPresenter(private val listFragment: MoviesListFragment) : BasePresenter(), MoviesListContract.Presenter, Interactor.Presentation {
+class MoviesListPresenter : BasePresenter(), MoviesListContract.Presenter, Interactor.Presentation {
 
 
     private val tag = this.javaClass.simpleName
-    private val view: MoviesListContract.View? = listFragment
+    lateinit var view: MoviesListContract.View
+    lateinit var listFragment: MoviesListFragment
     private val downloadMoviesUseCase: DownloadMoviesUseCase = DownloadMoviesUseCaseImpl()
     private val sortMoviesByDateDescUseCase: SortMoviesByDateDescUseCase = SortMoviesByDateDescUseCaseImpl()
     private val backendInteractor: Interactor.Backend = BackendRepository()
@@ -37,6 +39,11 @@ class MoviesListPresenter(private val listFragment: MoviesListFragment) : BasePr
         currentPage = response.page
         moviesList.addAll(response.results)
         sortMoviesByDateDescUseCase.run(moviesList, this)
+    }
+
+    override fun setFragment(fragment:MoviesListFragment) {
+        listFragment = fragment
+        view = listFragment
     }
 
     override fun onMoviesListSorted(list: List<Movie>) {
