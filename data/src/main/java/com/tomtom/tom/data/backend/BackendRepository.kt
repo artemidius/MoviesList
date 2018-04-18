@@ -15,5 +15,4 @@ class BackendRepository:Interactor.Backend {
                 .getPopularMovies(api_key, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-
 }

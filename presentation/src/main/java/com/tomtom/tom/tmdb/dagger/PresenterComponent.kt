@@ -2,7 +2,6 @@ package com.tomtom.tom.tmdb.dagger
 
 import com.tomtom.tom.tmdb.ui.detail.MovieDetailFragment
 import com.tomtom.tom.tmdb.ui.list.MoviesListFragment
-import com.tomtom.tom.tvshowslist.dagger.PresenterModule
 import dagger.Component
 import javax.inject.Singleton
 

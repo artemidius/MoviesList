@@ -5,7 +5,7 @@ import com.tomtom.tom.domain.usecases.SortMoviesByDateDescUseCaseImpl
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class SortUsecaseTest {
+class SortUseCaseTest {
 
     @Test
     fun sortWorksFine() {
@@ -14,7 +14,6 @@ class SortUsecaseTest {
         val movie2 = Movie("title", "path", "overview", 0, 0.0, "2016-11-16")
         val movie3 = Movie("title", "path", "overview", 0, 0.0, "2017-04-17")
         val movie4 = Movie("title", "path", "overview", 0, 0.0, "2018-04-18")
-
 
         val list = mutableListOf<Movie>()
 

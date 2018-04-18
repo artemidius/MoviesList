@@ -5,7 +5,7 @@ import com.tomtom.tom.tmdb.R
 import com.tomtom.tom.tmdb.dagger.*
 import com.tomtom.tom.tmdb.ui.detail.MovieDetailsPresenter
 import com.tomtom.tom.tmdb.ui.list.MoviesListPresenter
-import com.tomtom.tom.tvshowslist.dagger.PresenterModule
+import com.tomtom.tom.tmdb.dagger.PresenterModule
 import io.sentry.Sentry
 import io.sentry.android.AndroidSentryClientFactory
 
@@ -24,7 +24,7 @@ class MoviesListApplication : Application() {
 
         /*
         OKAY,
-        I know that hardcoding a secret string is totally illegal.
+        I know that hardcoding a secret strings is totally illegal.
         I do it as an exception for the sake of a test work
         */
         apiKey = resources.getString(R.string.api_key)

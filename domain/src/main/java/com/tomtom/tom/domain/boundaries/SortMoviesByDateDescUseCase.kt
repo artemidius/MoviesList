@@ -7,6 +7,4 @@ interface SortMoviesByDateDescUseCase {
             list:List<Movie>,
             presentationInteractor: Interactor.Presentation
     )
-
-
 }

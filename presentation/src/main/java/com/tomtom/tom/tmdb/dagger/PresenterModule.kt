@@ -1,4 +1,4 @@
-package com.tomtom.tom.tvshowslist.dagger
+package com.tomtom.tom.tmdb.dagger
 
 import com.tomtom.tom.tmdb.ui.detail.MovieDetailsPresenter
 import com.tomtom.tom.tmdb.ui.list.MoviesListPresenter

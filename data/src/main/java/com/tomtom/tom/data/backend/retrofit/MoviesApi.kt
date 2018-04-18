@@ -3,7 +3,6 @@ package com.tomtom.tom.data.backend.retrofit
 import com.tomtom.tom.domain.model.MoviesResponse
 import io.reactivex.Single
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MoviesApi {
@@ -21,5 +20,4 @@ interface MoviesApi {
             @Query("page") page: String,
             @Query("language") language: String
     ): Single<MoviesResponse>
-
 }

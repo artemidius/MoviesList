@@ -16,8 +16,4 @@ interface Interactor {
         fun downloadMovies(api_key:String, page:String = "1"):Single<MoviesResponse>
     }
 
-    interface Conversion {
-        fun sortMoviesByDateDesc(list:List<Movie>):Single<List<Movie>>
-    }
-
 }
