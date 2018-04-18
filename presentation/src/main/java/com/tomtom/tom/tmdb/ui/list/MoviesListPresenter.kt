@@ -55,8 +55,8 @@ class MoviesListPresenter : BasePresenter(), MoviesListContract.Presenter, Inter
         if (fragmentIsActive) {
             listFragment.activity.runOnUiThread {
                 listFragment.dispatcher.showLoadigProgress(false)
-                if(sortedByDate) view?.onDataUpdate(sortedList)
-                else view?.onDataUpdate(moviesList)
+                if(sortedByDate) view.onDataUpdate(sortedList)
+                else view.onDataUpdate(moviesList)
             }
         }
     }
@@ -82,7 +82,7 @@ class MoviesListPresenter : BasePresenter(), MoviesListContract.Presenter, Inter
         updateScreenTitle()
         updateButtonText()
         if (moviesList.size < 20) downloadNextPage()
-        else view?.onDataUpdate(moviesList)
+        else view.onDataUpdate(moviesList)
     }
 
     fun updateScreenTitle() {
@@ -90,13 +90,13 @@ class MoviesListPresenter : BasePresenter(), MoviesListContract.Presenter, Inter
     }
 
     fun updateButtonText() {
-        view?.setSortingButtonState(sortedByDate)
+        view.setSortingButtonState(sortedByDate)
     }
 
     override fun onSortButtonClick() {
         sortedByDate = !sortedByDate
         updateUI()
-        view?.setSortingButtonState(sortedByDate)
+        view.setSortingButtonState(sortedByDate)
         updateScreenTitle()
     }
 

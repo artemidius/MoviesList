@@ -1,5 +1,6 @@
 package com.tomtom.tom.tmdb.validation
 
+
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.action.ViewActions.*
@@ -23,7 +24,7 @@ class EspressoBigValidationTest {
 
     private val numberOfSwipes = 10
     private val numberOfTaps = 10
-    private val delay:Long = 500
+    private val delay:Long = 1000
 
     @Rule @JvmField
     val mActivityRule = ActivityTestRule(MainActivity::class.java)
@@ -39,12 +40,12 @@ class EspressoBigValidationTest {
     fun bigFunctionalityTest() {
 
 
-        Thread.sleep(3000)
+        Thread.sleep(5000)
 
         //some swipes on movies list forward
         for (x in 0 .. numberOfSwipes) {
-            onView(withId(R.id.movies_recycler)).perform(swipeUp())
-            Thread.sleep(delay * 2)
+            onView(withId(R.id.list_container)).perform(swipeUp())
+            Thread.sleep(delay)
         }
 
         //some taps on sort button

@@ -10,7 +10,8 @@
     android:paddingLeft="4dp"
     android:paddingRight="4dp"
     android:background="@color/colorPrimaryLight"
-    android:id="@+id/list_container">
+    android:id="@+id/list_container"
+    android:layout_marginTop="?attr/actionBarSize">
 
     <Button
         android:id="@+id/sort_button"

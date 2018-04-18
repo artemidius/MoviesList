@@ -5,7 +5,7 @@ import com.tomtom.tom.domain.model.Movie
 import com.tomtom.tom.tmdb.base.BasePresenter
 
 
-class MovieDetailsPresenter() : BasePresenter(), MovieDetailsContract.Presenter {
+class MovieDetailsPresenter : BasePresenter(), MovieDetailsContract.Presenter {
 
     private val tag = this.javaClass.simpleName
     lateinit var view: MovieDetailsContract.View

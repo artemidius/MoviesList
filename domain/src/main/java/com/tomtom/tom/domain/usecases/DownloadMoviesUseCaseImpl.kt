@@ -12,9 +12,8 @@ class DownloadMoviesUseCaseImpl : DownloadMoviesUseCase {
         val nextPage: String = (page + 1).toString()
         val randomDelay = Random().nextInt(1000).toLong() + 500
         backendInteractor.downloadMovies(api_key, nextPage)
-                .timeout(10000, TimeUnit.MILLISECONDS)
-                .retry (3)
-                .delay(randomDelay, TimeUnit.MILLISECONDS)
+                .timeout(7, TimeUnit.SECONDS)
+                .retry (2)
                 .subscribe { response: MoviesResponse?, error: Throwable? ->
                     when {
                         error != null -> presentationInteractor.onMoviesPageDownloadFailed(error)
